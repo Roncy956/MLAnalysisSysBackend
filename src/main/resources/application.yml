@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: MLAnalysisSysBackend
+  datasource:
+    url: jdbc:mysql://localhost:3306/ml_project
+    username: root
+    password: 123456
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 管理员邀请码
+admin-key:
+  key: ADMIN2025
+
+# jwt密钥
+jwt-sign-key:
+  key: "U3ByaW5nQm9vdC1WdWUtSmF2YVdlYi1Qcm9qZWN0"
+  # Base64编码 原始字符串：SpringBoot-Vue-JavaWeb-Project

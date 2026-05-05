@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.mlanalysissysbackend.mapper.UserMapper">
+    <!--    插入用户，并返回自动生成的id-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        insert into user(name, password, create_time, update_time)
+        values (#{name}, #{password}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--    通过name查找用户-->
+    <select id="getUserByName" resultType="com.learn.mlanalysissysbackend.pojo.User">
+        select *
+        from user
+        where name = #{name}
+    </select>
+</mapper>
