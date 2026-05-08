@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.mlanalysissysbackend.mapper.MarineEconomyProductMapper">
+
+    <!-- 批量插入 -->
+    <insert id="batchInsert" parameterType="list" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO marine_economy_product (
+        location_code, product_code, export_value, year,
+        diversity, ubiquity, mcp, eci, pci, density, coi, cog, rca,
+        product_name, marine_type, color,
+        total_value_by_year, total_value_by_year_location, total_value_by_year_product,
+        total_value_by_year_type, total_value_by_year_location_type, total_value_by_year_type_location
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.locationCode}, #{item.productCode}, #{item.exportValue}, #{item.year},
+            #{item.diversity}, #{item.ubiquity}, #{item.mcp}, #{item.eci}, #{item.pci},
+            #{item.density}, #{item.coi}, #{item.cog}, #{item.rca},
+            #{item.productName}, #{item.marineType}, #{item.color},
+            #{item.totalValueByYear}, #{item.totalValueByYearLocation}, #{item.totalValueByYearProduct},
+            #{item.totalValueByYearType}, #{item.totalValueByYearLocationType}, #{item.totalValueByYearTypeLocation}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 删除指定年份和地区的数据（可选） -->
+    <delete id="deleteByYearAndLocation">
+        DELETE FROM marine_economy_product
+        WHERE year = #{year} AND location_code = #{locationCode}
+    </delete>
+
+</mapper>
