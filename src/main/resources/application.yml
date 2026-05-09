@@ -22,3 +22,8 @@ admin-key:
 jwt-sign-key:
   key: "U3ByaW5nQm9vdC1WdWUtSmF2YVdlYi1Qcm9qZWN0"
   # Base64编码 原始字符串：SpringBoot-Vue-JavaWeb-Project
+
+python:
+  script:
+    path: python/forest.py    # 或相对路径（相对于工作目录）
+  command: D:/Python/conda/Miniconda/envs/py38/python.exe                      # 根据环境调整

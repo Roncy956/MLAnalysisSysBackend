@@ -1,4 +1,4 @@
-package com.learn.mlanalysissysbackend.pojo;
+package com.learn.mlanalysissysbackend.pojo.ml;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +9,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class MarineEconomyProduct {
     private Long id;
-    private Integer locationCode;
-    private String productCode;
-    private Long exportValue;
+    private Integer location;
+    private String product;
+    private Long value;
     private Integer year;
     private Integer diversity;
     private Integer ubiquity;
@@ -23,7 +23,7 @@ public class MarineEconomyProduct {
     private Double cog;
     private Double rca;
     private String productName;
-    private String marineType;
+    private String type;
     private String color;
     private Long totalValueByYear;
     private Long totalValueByYearLocation;
