@@ -15,9 +15,4 @@ public interface MarineEconomyProductMapper {
      * @return 影响行数
      */
     int batchInsert(@Param("list") List<MarineEconomyProduct> list);
-    
-    /**
-     * 根据年份和地区删除数据（用于增量更新场景，可选）
-     */
-    int deleteByYearAndLocation(@Param("year") Integer year, @Param("locationCode") Integer locationCode);
 }
