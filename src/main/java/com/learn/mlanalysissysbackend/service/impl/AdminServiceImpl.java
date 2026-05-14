@@ -18,7 +18,6 @@ public class AdminServiceImpl implements AdminService {
     private MarineEconomyProductMapper mapper;
 
     // 导入CSV文件
-    @Override
     @Transactional(rollbackFor = Exception.class)
     public void importCsv(MultipartFile file) throws Exception {
         // 检测是否为空和文件格式

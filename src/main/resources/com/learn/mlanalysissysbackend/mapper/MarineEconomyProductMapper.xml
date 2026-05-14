@@ -26,4 +26,15 @@
     <select id="selectAll" resultType="com.learn.mlanalysissysbackend.pojo.ml.MarineEconomyProduct">
         SELECT * FROM marine_economy_product
     </select>
+
+    <!-- 查询每个地区每年的总出口额，避免因冗余数据导致的重复行 -->
+    <select id="selectDistinctLocationYearTotal" resultType="com.learn.mlanalysissysbackend.pojo.LocationYearTotalDTO">
+        SELECT
+            location,
+            year,
+            MAX(total_value_by_year_location) AS totalValue
+        FROM marine_economy_product
+        GROUP BY location, year
+        ORDER BY year ASC, location ASC
+    </select>
 </mapper>
