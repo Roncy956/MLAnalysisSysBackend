@@ -27,5 +27,5 @@ jwt-sign-key:
 
 python:
   script:
-    path: src/main/resources/python/forest.py    # 或相对路径（相对于工作目录）
+    path: src/main/resources/python/    # 或相对路径（相对于工作目录）
   command: D:/Python/conda/Miniconda/envs/py38/python.exe                      # 根据环境调整

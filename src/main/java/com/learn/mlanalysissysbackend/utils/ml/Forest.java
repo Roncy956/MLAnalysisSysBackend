@@ -36,7 +36,7 @@ public class Forest {
             // 关键：驼峰转下划线
             map.put("product_name", p.getProductName());
             map.put("type", p.getType());
-            map.put("color", p.getColor() != null ? p.getColor() : "Unknown");
+//            map.put("color", p.getColor() != null ? p.getColor() : "Unknown");
             map.put("total_value_by_year", p.getTotalValueByYear());
             map.put("total_value_by_year_location", p.getTotalValueByYearLocation());
             map.put("total_value_by_year_product", p.getTotalValueByYearProduct());

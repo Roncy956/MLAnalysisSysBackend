@@ -4,5 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface MLResult {
-    public List<Map> readForestData();
+    public List<Map> readRandomForestData();
+
+    public List<Map> readXGBoostData();
+
+    public List<Map> readLightGBMData();
+
+    public List<Map> readCatBoostData();
 }
