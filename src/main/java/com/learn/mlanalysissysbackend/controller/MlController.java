@@ -1,14 +1,13 @@
 package com.learn.mlanalysissysbackend.controller;
 
+import com.learn.mlanalysissysbackend.pojo.TableQueryParam;
 import com.learn.mlanalysissysbackend.pojo.Result;
-import com.learn.mlanalysissysbackend.pojo.YearlyCityExportVO;
 import com.learn.mlanalysissysbackend.service.MLResult;
 import com.learn.mlanalysissysbackend.service.MarineEconomyService;
 import com.learn.mlanalysissysbackend.service.PythonScriptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -42,6 +41,11 @@ public class MlController {
         return pythonScriptService.trainCatBoostModel();
     }
 
+    @PostMapping("/train/ensemble")
+    public Map<String, Object> trainEnsemble() throws Exception {
+        return pythonScriptService.trainEnsembleModel();
+    }
+
     @GetMapping("/result/random-forest")
     public Result getRandomForestData() {
         // 调用 Service 读取数据
@@ -70,8 +74,25 @@ public class MlController {
         return Result.success(mlResult.readCatBoostData().getFirst());
     }
 
+    @GetMapping("/result/ensemble")
+    public Result getEnsembleData() {
+        // 调用 Service 读取数据
+//        return mlResult.readForestData();
+        return Result.success(mlResult.readEnsembleData().getFirst());
+    }
+
     @GetMapping("/yearly-city-export")
     public Result getYearlyCityExport() {
         return Result.success(marineEconomyService.getYearlyCityExport());
+    }
+
+    @GetMapping("/table")
+    public Result getTableData(TableQueryParam tableQueryParam){
+        return Result.success(marineEconomyService.getMarineEconomyProductData(tableQueryParam));
+    }
+
+    @GetMapping("/table/len")
+    public Result getTableLen(){
+        return Result.success(marineEconomyService.getTableLen());
     }
 }

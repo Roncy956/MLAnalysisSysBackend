@@ -22,4 +22,8 @@ public interface MarineEconomyProductMapper {
 
     // 查询每个地区、每年的总出口额（去重，按年份和地区代码排序）
     List<LocationYearTotalDTO> selectDistinctLocationYearTotal();
+
+    List<MarineEconomyProduct> selectPageData();
+
+    Integer getTableLen();
 }

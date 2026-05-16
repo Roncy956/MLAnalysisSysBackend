@@ -45,4 +45,12 @@ public class MLResultImpl implements MLResult {
         // MongoTemplate 会自动将 BSON 转换为 Java 的 Map/List 结构
         return mongoTemplate.findAll(Map.class, collectionName);
     }
+
+    @Override
+    public List<Map> readEnsembleData() {
+        String collectionName = "Ensemble";
+        // 2. 查询集合中的所有文档
+        // MongoTemplate 会自动将 BSON 转换为 Java 的 Map/List 结构
+        return mongoTemplate.findAll(Map.class, collectionName);
+    }
 }

@@ -136,4 +136,30 @@ public class PythonScriptServiceImpl implements PythonScriptService {
         // 返回结果
         return resultMap;
     }
+
+    @Override
+    public Map<String, Object> trainEnsembleModel() throws IOException, InterruptedException {
+        // 获取所有数据并且转换为 Python 脚本所需的格式
+        List<MarineEconomyProduct> productList = mapper.selectAll();
+        List<Map<String, Object>> pythonData = convertToPythonFormat(productList);
+        // 转换为 JSON
+        Map<String, Object> input = new HashMap<>();
+        input.put("data", pythonData);
+        String inputJson = objectMapper.writeValueAsString(input);
+        // 选择随机森林脚本
+        String path = scriptPath + "Ensemble.py";
+        // 执行 Python 脚本
+        String result = executePythonCommand("train", inputJson, interpreter, path);
+        Map<String, Object> resultMap = objectMapper.readValue(result, Map.class);
+        // 定义集合名称
+        String collectionName = "Ensemble";
+        // 如果集合存在，则删除（这会清空所有旧数据）
+        if (mongoTemplate.collectionExists(collectionName)) {
+            mongoTemplate.dropCollection(collectionName);
+        }
+        // 创建新的集合并插入数据
+        mongoTemplate.insert(resultMap, collectionName);
+        // 返回结果
+        return resultMap;
+    }
 }

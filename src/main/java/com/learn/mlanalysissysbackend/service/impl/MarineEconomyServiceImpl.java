@@ -2,22 +2,25 @@
 // 文件路径: src/main/java/com/learn/mlanalysissysbackend/service/impl/MarineEconomyServiceImpl.java
 package com.learn.mlanalysissysbackend.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.learn.mlanalysissysbackend.mapper.MarineEconomyProductMapper;
+import com.learn.mlanalysissysbackend.pojo.TableQueryParam;
 import com.learn.mlanalysissysbackend.pojo.LocationYearTotalDTO;
 import com.learn.mlanalysissysbackend.pojo.CityValueVO;
 import com.learn.mlanalysissysbackend.pojo.YearlyCityExportVO;
+import com.learn.mlanalysissysbackend.pojo.ml.MarineEconomyProduct;
 import com.learn.mlanalysissysbackend.service.MarineEconomyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class MarineEconomyServiceImpl implements MarineEconomyService {
 
     // 地区代码 -> 城市/省份名称 映射表（根据文档）
     private static final Map<Integer, String> LOCATION_MAP = new HashMap<>();
+
     static {
         LOCATION_MAP.put(12, "天津市");
         LOCATION_MAP.put(13, "河北省");
@@ -62,5 +65,19 @@ public class MarineEconomyServiceImpl implements MarineEconomyService {
             result.add(new YearlyCityExportVO(entry.getKey(), entry.getValue()));
         }
         return result;
+    }
+
+    @Override
+    public List<MarineEconomyProduct> getMarineEconomyProductData(TableQueryParam tableQueryParam) {
+        // 分页
+        PageHelper.startPage(tableQueryParam.getPage(), tableQueryParam.getPageSize());
+        // 查询数据
+        List<MarineEconomyProduct> fileList = marineEconomyProductMapper.selectPageData();
+        return fileList;
+    }
+
+    @Override
+    public Integer getTableLen() {
+        return marineEconomyProductMapper.getTableLen();
     }
 }

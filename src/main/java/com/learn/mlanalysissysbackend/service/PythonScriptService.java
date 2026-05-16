@@ -12,4 +12,6 @@ public interface PythonScriptService {
     Map<String, Object> trainLightGBMModel() throws IOException, InterruptedException;
 
     Map<String, Object> trainCatBoostModel() throws IOException, InterruptedException;
+
+    Map<String, Object> trainEnsembleModel() throws IOException, InterruptedException;
 }

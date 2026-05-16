@@ -11,4 +11,6 @@ public interface MLResult {
     public List<Map> readLightGBMData();
 
     public List<Map> readCatBoostData();
+
+    public List<Map> readEnsembleData();
 }

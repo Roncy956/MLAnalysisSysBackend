@@ -1,11 +1,10 @@
 package com.learn.mlanalysissysbackend.utils.ml;
 
 import com.learn.mlanalysissysbackend.pojo.ml.MarineEconomyProduct;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,13 +57,13 @@ public class Forest {
         Process process = pb.start();
         // 将输入写入 Python 脚本
         try (OutputStream os = process.getOutputStream();
-             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "utf-8"))) {
+             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, StandardCharsets.UTF_8))) {
             writer.write(jsonInput);
             writer.flush();
         }
         // 读取 Python 脚本的输出
         StringBuilder output = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "utf-8"))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 output.append(line);

@@ -37,4 +37,12 @@
         GROUP BY location, year
         ORDER BY year ASC, location ASC
     </select>
+
+    <select id="selectPageData" resultType="com.learn.mlanalysissysbackend.pojo.ml.MarineEconomyProduct">
+        SELECT * from marine_economy_product
+    </select>
+    <select id="getTableLen" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        from marine_economy_product
+    </select>
 </mapper>
